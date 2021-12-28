@@ -24,6 +24,8 @@ class MainActivity : AppCompatActivity() {
 
         replaceFragment(SplashScreen())
 
+
+
     }
 
     fun replaceFragment(fragmenet : Fragment){
