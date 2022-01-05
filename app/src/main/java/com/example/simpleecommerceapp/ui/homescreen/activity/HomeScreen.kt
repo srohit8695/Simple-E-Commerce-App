@@ -15,7 +15,7 @@ class HomeScreen : AppCompatActivity() {
 
     }
 
-    fun replaceFragment(fragmenet: Fragment){
+    /*fun replaceFragment(fragmenet: Fragment){
         try {
             val fragmentManager = supportFragmentManager
             val fragmentTranscation = fragmentManager.beginTransaction()
@@ -24,6 +24,6 @@ class HomeScreen : AppCompatActivity() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-    }
+    }*/
 
 }

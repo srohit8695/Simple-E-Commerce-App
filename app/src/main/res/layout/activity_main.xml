@@ -7,8 +7,11 @@
     tools:context=".MainActivity">
 
   <androidx.fragment.app.FragmentContainerView
+      app:defaultNavHost="true"
+      app:navGraph="@navigation/navigation"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
+      android:name="androidx.navigation.fragment.NavHostFragment"
       android:id="@+id/fragmentSplash"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
