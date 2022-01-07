@@ -15,6 +15,7 @@ import com.example.simpleecommerceapp.R
 import com.example.simpleecommerceapp.databinding.FragmentSplashScreenBinding
 import com.example.simpleecommerceapp.utility.Util
 import androidx.navigation.fragment.findNavController
+import com.example.simpleecommerceapp.utility.SingletonDatas
 
 /**
  * An example full-screen fragment that shows and hides the system UI (i.e.
@@ -51,6 +52,8 @@ class SplashFragment : Fragment() {
 
         load(container)
 
+        val singletonDatas : SingletonDatas = SingletonDatas.instance
+
 
         return binding.root
 
@@ -65,7 +68,7 @@ class SplashFragment : Fragment() {
                 _binding!!.refreshLayout.visibility = View.VISIBLE
                 Util.showShortToast(container!!.context ,"Check Internet Connectivity")
             }
-        }, 4000)
+        }, 2000)
 
     }
 

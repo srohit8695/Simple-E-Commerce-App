@@ -23,7 +23,9 @@ class SplashViewModel constructor()  : ViewModel()  {
         call?.enqueue(object : Callback<Products> {
             override fun onResponse(call: Call<Products>,response: Response<Products>) {
                 if (response.isSuccessful) {
-                    Log.d("data",""+response.body())
+                    val products = response.body()
+                    Log.d("rohit",""+response.body().toString())
+
                 }
             }
 
