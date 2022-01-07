@@ -10,9 +10,9 @@ android {
         viewBinding = true
     }
 
-    buildFeatures {
+    /*buildFeatures {
         dataBinding true
-    }
+    }*/
 
     defaultConfig {
         applicationId "com.example.simpleecommerceapp"
@@ -59,9 +59,11 @@ dependencies {
     // retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.2.2'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3'
     //Coroutine
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
+    //glide
+    implementation "com.github.bumptech.glide:glide:$glide_version"
 
 }
