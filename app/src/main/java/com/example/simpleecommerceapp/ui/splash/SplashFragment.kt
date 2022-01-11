@@ -6,6 +6,7 @@ import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.SYSTEM_UI_FLAG_LOW_PROFILE
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Button
@@ -30,9 +31,9 @@ class SplashFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
-        val flags = View.SYSTEM_UI_FLAG_LOW_PROFILE or
+        val flags = SYSTEM_UI_FLAG_LOW_PROFILE or
                 View.SYSTEM_UI_FLAG_FULLSCREEN or
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
                 View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
@@ -66,7 +67,7 @@ class SplashFragment : Fragment() {
                 findNavController().navigate(R.id.action_splashScreen_to_homeFragment2)
             } else {
                 _binding!!.refreshLayout.visibility = View.VISIBLE
-                Util.showShortToast(container!!.context ,"Check Internet Connectivity")
+                Util.showShortToast(container.context ,"Check Internet Connectivity")
             }
         }, 500)
 

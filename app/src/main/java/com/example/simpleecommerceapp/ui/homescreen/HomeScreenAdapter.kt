@@ -88,10 +88,12 @@ class HomeScreenAdapter(private var dataList : List<Product>, private val contex
     override fun getItemCount(): Int = dataList.size
 
 
-    fun addToCart(position: Int){
+    fun getProductID(position: Int) : String{
+        return dataList[position].product_id.toString()
+    }
 
-        Util.showShortToast(context, dataList[position].qty.toString())
-
+    fun getProduct(position: Int) : Product{
+       return dataList[position]
     }
 
 

@@ -18,7 +18,7 @@ class ProductRepository(context: Context) {
         dbms.deleteData(productEntity)
     }
 
-    fun getAllData() : LiveData<List<LocalProducts>> {
+    fun getAllData() : List<LocalProducts> {
         return dbms.showAllProducts()
     }
 
@@ -26,5 +26,8 @@ class ProductRepository(context: Context) {
         return dbms.exists(id)
     }
 
+    fun totalProductsInCart() : Long{
+        return dbms.totalProducts()
+    }
 
 }

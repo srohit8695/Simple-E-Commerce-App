@@ -1,9 +1,14 @@
 package com.example.simpleecommerceapp.ui.homescreen.fragment
 
+import android.app.Application
 import android.util.Log
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.simpleecommerceapp.callbacks.Resource
+import com.example.simpleecommerceapp.database.ProductRepository
+import com.example.simpleecommerceapp.models.LocalProducts
 import com.example.simpleecommerceapp.models.Product
 import com.example.simpleecommerceapp.models.Products
 import com.example.simpleecommerceapp.networks.ApiInterface
@@ -14,21 +19,29 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel (application: Application): AndroidViewModel(application) {
 
-    var dataList = MutableLiveData<Resource<List<Product>>>()
-    val apiInterface = RetrofitService.getInstance()?.create<ApiInterface>(ApiInterface::class.java)
+    var dataListFromApi = MutableLiveData<Resource<List<Product>>>()
+    val apiInterface = RetrofitService.getInstance().create<ApiInterface>(ApiInterface::class.java)
 
-    fun getAllProductList()  {
 
-        dataList.value = Resource.Loading()
+    private val repository : ProductRepository = ProductRepository(application)
+//    val localProductList : LiveData<List<LocalProducts>> = repository.getAllData()
+
+    init {
+        getAllProductList()
+    }
+
+    private fun getAllProductList()  {
+
+        dataListFromApi.value = Resource.Loading()
 
         val call: Call<Products> = apiInterface.getAllDatas()
         call.enqueue(object : Callback<Products> {
             override fun onResponse(call: Call<Products>, response: Response<Products>) {
                 if (response.isSuccessful) {
 
-                    dataList.value = Resource.Success(response.body()!!.products)
+                    dataListFromApi.value = Resource.Success(response.body()!!.products)
 
                 }
             }
@@ -39,6 +52,22 @@ class HomeViewModel : ViewModel() {
         })
 
 
+    }
+
+    fun insertProduct(productEntity: LocalProducts) : Long{
+       return repository.insertData(productEntity)
+    }
+
+    fun checkProduct(productID : Int) : Boolean{
+        return repository.checkProductExist(productID)
+    }
+
+    fun showAllProductInCart() : String{
+        return repository.getAllData().toString()
+    }
+
+    fun ShowCartProductCount() : Long{
+        return repository.totalProductsInCart()
     }
 
 }

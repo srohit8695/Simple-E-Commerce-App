@@ -17,9 +17,13 @@ interface ProductLocalDAO {
     fun deleteData(productEntity: LocalProducts)
 
     @Query("Select * from productTable")
-    fun showAllProducts(): LiveData<List<LocalProducts>>
+    fun showAllProducts(): List<LocalProducts>
 
     @Query("SELECT EXISTS (SELECT 1 FROM productTable WHERE product_id = :product_id)")
     fun exists(product_id: Int): Boolean
+
+
+    @Query("SELECT COUNT(*) FROM productTable")
+    fun totalProducts(): Long
 
 }

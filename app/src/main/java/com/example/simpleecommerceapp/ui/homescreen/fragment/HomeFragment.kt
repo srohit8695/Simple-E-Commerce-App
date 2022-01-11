@@ -14,11 +14,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simpleecommerceapp.R
+import com.example.simpleecommerceapp.callbacks.AddToCart
 import com.example.simpleecommerceapp.callbacks.Resource
 import com.example.simpleecommerceapp.callbacks.SwipeHelper
 import com.example.simpleecommerceapp.callbacks.SwipeHelperKotlin
 import com.example.simpleecommerceapp.databinding.FragmentSplashScreenBinding
 import com.example.simpleecommerceapp.databinding.HomeFragmentBinding
+import com.example.simpleecommerceapp.models.LocalProducts
 import com.example.simpleecommerceapp.models.Product
 import com.example.simpleecommerceapp.ui.homescreen.HomeScreenAdapter
 import com.example.simpleecommerceapp.utility.SingletonDatas
@@ -30,7 +32,6 @@ class HomeFragment : Fragment() {
 
     private lateinit var viewModel: HomeViewModel
     private var binding: HomeFragmentBinding? = null
-//    private val binding get() = binding!!
     private var adapter: HomeScreenAdapter? = null
 
     @SuppressLint("FragmentLiveDataObserve")
@@ -45,11 +46,9 @@ class HomeFragment : Fragment() {
         adapter = HomeScreenAdapter(emptyList(),inflater.context)
         binding!!.homeRecyclerView.adapter = adapter
 
-        viewModel.getAllProductList()
-
 
         viewModel.apply {
-            dataList.observe(viewLifecycleOwner,{ status ->
+            dataListFromApi.observe(viewLifecycleOwner,{ status ->
 
                 when(status){
                     is Resource.Loading -> {
@@ -96,39 +95,39 @@ class HomeFragment : Fragment() {
                 })*/
 
 
-                // Wish list Button
                 underlayButtons?.add(UnderlayButton("Wishlist", AppCompatResources.getDrawable(context!!,R.drawable.ic_baseline_favorite_border_24 ), Color.parseColor("#00FF00"), Color.parseColor("#ffffff")
                 ) { Util.showShortToast(context!!, "Added to Wishlist") })
 
 
-                // Add to cart Button
                 underlayButtons?.add(UnderlayButton("Add Cart", AppCompatResources.getDrawable(context!!,R.drawable.ic_baseline_shopping_cart_24 ), Color.parseColor("#FF0000"), Color.parseColor("#ffffff")) { position ->
 
-                    adapter!!.addToCart(position)
+                    if(!viewModel.checkProduct(adapter!!.getProductID(position).toInt())){
+                        addToCart(adapter!!.getProduct(position))
+                    }else{
+                        Util.showShortToast(context!!, "Product Already Added")
+                    }
 
                 })
 
             }
         }
 
-
-
-
-//        println("rohit "+ viewModel.dataList.value.toString())
-
-       /* if (SingletonDatas.allProducts != null) {
-
-            var productList = SingletonDatas.allProducts
-
-            for (i in 0..productList!!.products!!.size-1){
-                println(productList!!.products!!.get(i).toString())
-            }
-
-        }*/
-
-
         return binding!!.root
     }
+
+    fun addToCart(product: Product){
+
+        val localProduct = LocalProducts(product.description, product.id, product.image, product.name, product.price, product.product_id, product.special, product.qty, product.subTotal)
+
+        if(viewModel.insertProduct(localProduct) == viewModel.ShowCartProductCount()){
+            Util.showShortToast(requireContext(),"Added to Cart Successful")
+        }else{
+            Util.showShortToast(requireContext(),"Added to Cart is Unsuccessful")
+        }
+
+    }
+
+
 
 
 }
