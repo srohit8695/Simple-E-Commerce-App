@@ -1,23 +1,19 @@
 package com.example.simpleecommerceapp.models
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 
-
-data class Product(
+@Entity(tableName = "productTable")
+data class LocalProducts(
     val description: String?,
-    val href: String?,
     val id: String?,
     val image: String?,
-    val images: List<Any>?,
     val name: String?,
-    val options: List<Any>?,
     val price: String?,
     val product_id: String?,
-    val quantity: Int?,
-    val sku: String?,
     val special: String?,
-    val thumb: String?,
-    val zoom_thumb: String?,
     var qty : String?,
-    var subTotal : String?
+    var subTotal : String?,
+    @PrimaryKey(autoGenerate = true) val product_local_id: Int?= null
 )

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,7 +37,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = HomeFragmentBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
@@ -62,25 +63,9 @@ class HomeFragment : Fragment() {
                             adapter!!.updateList(it)
                         }
                     }
-
+                    else -> {}
                 }
-
-//                adapter!!.updateList(it)
-
-
-
-
-/*
-                for (i in 0..it.size-1){
-                    println(it.get(i).toString())
-                }
-*/
-
-
-
-            }
-            )
-
+            })
         }
 
 
@@ -94,64 +79,34 @@ class HomeFragment : Fragment() {
                 underlayButtons: MutableList<UnderlayButton>?
             ) {
                 // Share Button
-                underlayButtons?.add(UnderlayButton("Detail", AppCompatResources.getDrawable(context!!,R.drawable.ic_baseline_notes_24 ), Color.parseColor("#CDCDCD"), Color.parseColor("#ffffff"),
+                /*underlayButtons?.add(UnderlayButton("Detail", AppCompatResources.getDrawable(context!!,R.drawable.ic_baseline_notes_24 ), Color.parseColor("#CDCDCD"), Color.parseColor("#ffffff"),
                     object : UnderlayButtonClickListener {
                         override fun onClick(pos: Int) {
-                            Toast.makeText(
-                                context,
-                                "Delete clicked at " + pos,
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            Toast.makeText(context,"Delete clicked at " + pos,Toast.LENGTH_SHORT).show()
 
                         }
                     }
-                ))
+                ))*/
 
 
 
                 // Share Button
-                underlayButtons?.add(UnderlayButton("Share", AppCompatResources.getDrawable(context!!,R.drawable.ic_baseline_share_24 ), Color.parseColor("#0000FF"), Color.parseColor("#ffffff"),
-                    object : UnderlayButtonClickListener {
-                        override fun onClick(pos: Int) {
-                            Toast.makeText(
-                                context,
-                                "Delete clicked at " + pos,
-                                Toast.LENGTH_SHORT
-                            ).show()
+                /*underlayButtons?.add(UnderlayButton("Share", AppCompatResources.getDrawable(context!!,R.drawable.ic_baseline_share_24 ), Color.parseColor("#0000FF"), Color.parseColor("#ffffff")) {
 
-                        }
-                    }
-                ))
+                })*/
 
 
                 // Wish list Button
-                underlayButtons?.add(UnderlayButton("Wishlist", AppCompatResources.getDrawable(context!!,R.drawable.ic_baseline_favorite_border_24 ), Color.parseColor("#00FF00"), Color.parseColor("#ffffff"),
-                    object : UnderlayButtonClickListener {
-                        override fun onClick(pos: Int) {
-                            Toast.makeText(
-                                context,
-                                "Delete clicked at " + pos,
-                                Toast.LENGTH_SHORT
-                            ).show()
-
-                        }
-                    }
-                ))
+                underlayButtons?.add(UnderlayButton("Wishlist", AppCompatResources.getDrawable(context!!,R.drawable.ic_baseline_favorite_border_24 ), Color.parseColor("#00FF00"), Color.parseColor("#ffffff")
+                ) { Util.showShortToast(context!!, "Added to Wishlist") })
 
 
                 // Add to cart Button
-                underlayButtons?.add(UnderlayButton("Add Cart", AppCompatResources.getDrawable(context!!,R.drawable.ic_baseline_shopping_cart_24 ), Color.parseColor("#FF0000"), Color.parseColor("#ffffff"),
-                    object : UnderlayButtonClickListener {
-                        override fun onClick(pos: Int) {
-                            Toast.makeText(
-                                context,
-                                "Delete clicked at " + pos,
-                                Toast.LENGTH_SHORT
-                            ).show()
+                underlayButtons?.add(UnderlayButton("Add Cart", AppCompatResources.getDrawable(context!!,R.drawable.ic_baseline_shopping_cart_24 ), Color.parseColor("#FF0000"), Color.parseColor("#ffffff")) { position ->
 
-                        }
-                    }
-                ))
+                    adapter!!.addToCart(position)
+
+                })
 
             }
         }
