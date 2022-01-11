@@ -52,7 +52,7 @@ class SplashFragment : Fragment() {
 
         load(container)
 
-        val singletonDatas : SingletonDatas = SingletonDatas.instance
+
 
 
         return binding.root
@@ -68,16 +68,12 @@ class SplashFragment : Fragment() {
                 _binding!!.refreshLayout.visibility = View.VISIBLE
                 Util.showShortToast(container!!.context ,"Check Internet Connectivity")
             }
-        }, 2000)
+        }, 500)
 
     }
 
     fun checkInternetConnection(container: ViewGroup?) : Boolean {
-        if ( Util.checkForInternet(container!!.context) ) {
-            return true
-        } else {
-            return false
-        }
+        return Util.checkForInternet(container!!.context)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

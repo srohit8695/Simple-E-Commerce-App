@@ -6,6 +6,7 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import android.widget.Toast
 import com.example.simpleecommerceapp.models.Products
+import kotlin.random.Random
 
 class Util {
 
@@ -45,8 +46,35 @@ class Util {
             }
         }
 
+
         fun showShortToast(context: Context, message: String){
             Toast.makeText(context,message, Toast.LENGTH_SHORT).show()
+        }
+
+
+        fun stringToFloat( price : String) : Float{
+            var charPrice = ""
+
+            for (i in price.indices){
+                if((price[i] in '0'..'9') || price[i] == '.'){
+                    charPrice += price[i]
+                }
+            }
+
+            return charPrice.toFloat()
+        }
+
+
+        fun calculateTotalFromQty(qty : Int, price : Float) : Float{
+            return  qty * price
+        }
+
+        fun randomFloat(from : Float, to : Float) : Float{
+            return Random.nextDouble(from.toDouble(),to.toDouble()).toFloat()
+        }
+
+        fun randomInt(from : Int, to : Int) : Int{
+            return Random.nextInt(from,to)
         }
 
     }
