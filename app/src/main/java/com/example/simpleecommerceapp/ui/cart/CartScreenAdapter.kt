@@ -9,11 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.simpleecommerceapp.databinding.CartScreenItemBinding
 import com.example.simpleecommerceapp.databinding.HomeScreenItemBinding
+import com.example.simpleecommerceapp.models.LocalProducts
 import com.example.simpleecommerceapp.models.Product
 import com.example.simpleecommerceapp.ui.homescreen.HomeScreenAdapter
 import com.example.simpleecommerceapp.utility.Util
 
-class CartScreenAdapter(private var localList : List<Product>, private val context: Context) : RecyclerView.Adapter<CartScreenAdapter.LocalProductViewHolder>(){
+class CartScreenAdapter(private var localList : List<LocalProducts>, private val context: Context) : RecyclerView.Adapter<CartScreenAdapter.LocalProductViewHolder>(){
 
     inner class LocalProductViewHolder(val binding : CartScreenItemBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -31,7 +32,7 @@ class CartScreenAdapter(private var localList : List<Product>, private val conte
                 binding.name.text = localList[position].name
                 binding.pricePerQty.text = localList[position].price
                 binding.totalQty.text = localList[position].qty
-                binding.totalPrice.text = localList[position].subTotal
+                binding.totalPrice.text = Util.priceToIndianConversion(localList[position].subTotal!!)
 
             }
         }

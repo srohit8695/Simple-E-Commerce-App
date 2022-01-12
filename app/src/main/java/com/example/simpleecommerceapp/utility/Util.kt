@@ -6,6 +6,8 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import android.widget.Toast
 import com.example.simpleecommerceapp.models.Products
+import java.text.NumberFormat
+import java.util.*
 import kotlin.random.Random
 
 class Util {
@@ -75,6 +77,11 @@ class Util {
 
         fun randomInt(from : Int, to : Int) : Int{
             return Random.nextInt(from,to)
+        }
+
+        fun priceToIndianConversion(price : String) : String{
+            val formatter = NumberFormat.getCurrencyInstance(Locale("en", "IN"))
+            return formatter.format(price.toFloat())
         }
 
     }

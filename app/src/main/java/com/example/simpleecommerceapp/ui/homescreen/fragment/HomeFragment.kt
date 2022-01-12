@@ -64,11 +64,11 @@ class HomeFragment : Fragment() {
             })
         }
 
-        val cartCount = viewModel.ShowCartProductCount()
-        binding!!.cart.text = "Cart ($cartCount)"
+
+        updateCart()
         binding!!.cart.setOnClickListener {
 
-            if( cartCount > 0){
+            if( viewModel.ShowCartProductCount() > 0){
                 findNavController().navigate(R.id.action_homeFragment2_to_cartFragment)
             }
             else{
@@ -82,23 +82,6 @@ class HomeFragment : Fragment() {
                 viewHolder: RecyclerView.ViewHolder?,
                 underlayButtons: MutableList<UnderlayButton>?
             ) {
-                // Share Button
-                /*underlayButtons?.add(UnderlayButton("Detail", AppCompatResources.getDrawable(context!!,R.drawable.ic_baseline_notes_24 ), Color.parseColor("#CDCDCD"), Color.parseColor("#ffffff"),
-                    object : UnderlayButtonClickListener {
-                        override fun onClick(pos: Int) {
-                            Toast.makeText(context,"Delete clicked at " + pos, Toast.LENGTH_SHORT).show()
-
-                        }
-                    }
-                ))*/
-
-
-
-                // Share Button
-               /* underlayButtons?.add(UnderlayButton("Share", AppCompatResources.getDrawable(context!!,R.drawable.ic_baseline_share_24 ), Color.parseColor("#0000FF"), Color.parseColor("#ffffff")) {
-
-                })*/
-
 
                 underlayButtons?.add(UnderlayButton("Wishlist", AppCompatResources.getDrawable(context!!,R.drawable.ic_baseline_favorite_border_24 ), Color.parseColor("#00FF00"), Color.parseColor("#ffffff")
                 ) { Util.showShortToast(context!!, "Added to Wishlist") })
@@ -107,7 +90,11 @@ class HomeFragment : Fragment() {
                 underlayButtons?.add(UnderlayButton("Add Cart", AppCompatResources.getDrawable(context!!,R.drawable.ic_baseline_shopping_cart_24 ), Color.parseColor("#FF0000"), Color.parseColor("#ffffff")) { position ->
 
                     if(!viewModel.checkProduct(adapter!!.getProductID(position.toString().toInt()).toInt())){
-                        addToCart(adapter!!.getProduct(position.toString().toInt()))
+                        if (adapter!!.getProductQty(position.toString().toInt()) > 0) {
+                            addToCart(adapter!!.getProduct(position.toString().toInt()))
+                        } else {
+                            Util.showShortToast(context!!, "Product Quantity must be greater that 0")
+                        }
                     }else{
                         Util.showShortToast(context!!, "Product Already Added")
                     }
@@ -126,11 +113,23 @@ class HomeFragment : Fragment() {
 
         if(viewModel.insertProduct(localProduct) == viewModel.ShowCartProductCount()){
             Util.showShortToast(requireContext(),"Added to Cart Successful")
+            updateCart()
         }else{
             Util.showShortToast(requireContext(),"Added to Cart is Unsuccessful")
         }
 
     }
+
+    fun updateCart(){
+        try {
+            val cartCnt = viewModel.ShowCartProductCount().toString()
+            binding!!.cart.text = "Cart ("+ cartCnt +")"
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+
 
 
 

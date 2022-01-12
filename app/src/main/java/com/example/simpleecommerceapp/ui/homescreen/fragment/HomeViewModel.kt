@@ -26,7 +26,6 @@ class HomeViewModel (application: Application): AndroidViewModel(application) {
 
 
     private val repository : ProductRepository = ProductRepository(application)
-//    val localProductList : LiveData<List<LocalProducts>> = repository.getAllData()
 
     init {
         getAllProductList()

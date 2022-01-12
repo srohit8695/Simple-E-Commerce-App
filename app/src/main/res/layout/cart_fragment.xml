@@ -8,13 +8,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.cart.fragment.CartFragment">
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="check out"
         android:id="@+id/checkOut"/>
 
     <LinearLayout
+        android:padding="5dp"
         android:layout_gravity="bottom"
         android:weightSum="2"
         android:layout_width="match_parent"
@@ -28,15 +29,15 @@
             android:textColor="?attr/text_color"
             android:text="Total Amount :"
             android:textStyle="bold"
-            android:textSize="@dimen/home_item_title"/>
+            android:textSize="@dimen/home_item_count"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:gravity="center"
+            android:id="@+id/totalAmt"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="?attr/text_color"
-            android:text="Total Qty :"
             android:textSize="@dimen/home_item_title"/>
 
     </LinearLayout>
@@ -46,7 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/cart_screen_item"
-        android:id="@+id/homeRecyclerView"
+        android:id="@+id/cartRecyclerView"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 

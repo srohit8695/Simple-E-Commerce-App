@@ -48,7 +48,7 @@ class HomeScreenAdapter(private var dataList : List<Product>, private val contex
                 binding.add.setOnClickListener {
                     ++qty
                     updateQty(qty, binding)
-                    binding.totalPrice.text = Util.calculateTotalFromQty(qty, sp).toString()
+                    binding.totalPrice.text = Util.priceToIndianConversion(Util.calculateTotalFromQty(qty, sp).toString())
                     dataList[position].subTotal = binding.totalPrice.text.toString()
                     dataList[position].qty = qty.toString()
                 }
@@ -57,7 +57,7 @@ class HomeScreenAdapter(private var dataList : List<Product>, private val contex
                     if(qty >= 1){
                         --qty
                         updateQty(qty, binding)
-                        binding.totalPrice.text = Util.calculateTotalFromQty(qty, sp).toString()
+                        binding.totalPrice.text = Util.priceToIndianConversion(Util.calculateTotalFromQty(qty, sp).toString())
                         dataList[position].subTotal = binding.totalPrice.text.toString()
                         if(qty == 0){
                             binding.totalPrice.text = ""
@@ -94,6 +94,10 @@ class HomeScreenAdapter(private var dataList : List<Product>, private val contex
 
     fun getProduct(position: Int) : Product{
        return dataList[position]
+    }
+
+    fun getProductQty(position: Int) : Int {
+        return dataList[position].qty!!.toInt()
     }
 
 
