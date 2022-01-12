@@ -4,22 +4,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:weightSum="10"
     android:padding="5dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.cart.fragment.CartFragment">
 
-    <androidx.appcompat.widget.AppCompatButton
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_weight="8.5"
+        android:layout_gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="check out"
-        android:id="@+id/checkOut"/>
+        android:layout_height="0dp"
+        tools:listitem="@layout/cart_screen_item"
+        android:id="@+id/cartRecyclerView"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_weight="0.75"
         android:padding="5dp"
         android:layout_gravity="bottom"
         android:weightSum="2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -42,14 +48,11 @@
 
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_gravity="center"
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_weight="0.75"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/cart_screen_item"
-        android:id="@+id/cartRecyclerView"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-
+        android:layout_height="0dp"
+        android:text="check out"
+        android:id="@+id/checkOut"/>
 
 </LinearLayout>

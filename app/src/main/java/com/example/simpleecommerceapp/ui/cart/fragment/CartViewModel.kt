@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import com.example.simpleecommerceapp.database.ProductRepository
 import com.example.simpleecommerceapp.models.LocalProducts
+import com.example.simpleecommerceapp.utility.Util
 
 class CartViewModel(application: Application): AndroidViewModel(application) {
 
@@ -28,7 +29,7 @@ class CartViewModel(application: Application): AndroidViewModel(application) {
         var totalAmount = 0.0
         try {
             for(i in 0..allProducts.size-1){
-                totalAmount += allProducts.get(i).subTotal!!.toString().toFloat()
+                totalAmount += Util.stringToFloat(allProducts.get(i).subTotal!!)
             }
             totalAmountStr = totalAmount.toString()
         } catch (e: Exception) {
