@@ -32,7 +32,7 @@ class CartScreenAdapter(private var localList : List<LocalProducts>, private val
                 binding.name.text = localList[position].name
                 binding.pricePerQty.text = localList[position].price
                 binding.totalQty.text = localList[position].qty
-                binding.totalPrice.text = Util.priceToIndianConversion(localList[position].subTotal!!)
+                binding.totalPrice.text = localList[position].subTotal!!//Util.priceToIndianConversion(localList[position].subTotal!!)
 
             }
         }

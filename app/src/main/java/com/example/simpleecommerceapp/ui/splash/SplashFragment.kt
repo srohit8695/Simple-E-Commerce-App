@@ -69,7 +69,7 @@ class SplashFragment : Fragment() {
                 _binding!!.refreshLayout.visibility = View.VISIBLE
                 Util.showShortToast(container.context ,"Check Internet Connectivity")
             }
-        }, 500)
+        }, 2000)
 
     }
 

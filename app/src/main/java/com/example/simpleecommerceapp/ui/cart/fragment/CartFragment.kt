@@ -30,7 +30,7 @@ class CartFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(CartViewModel::class.java)
         adapter = CartScreenAdapter(viewModel.dbList,inflater.context)
         binding!!.cartRecyclerView.adapter = adapter
-        binding!!.totalAmt.text = Util.priceToIndianConversion(viewModel.totalAmountStr)
+        binding!!.totalAmt.text = viewModel.totalAmountStr//Util.priceToIndianConversion(viewModel.totalAmountStr)
         binding!!.checkOut.setOnClickListener {
             checkOutOption()
         }
