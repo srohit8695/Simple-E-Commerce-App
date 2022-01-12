@@ -13,6 +13,7 @@
         <action
             app:popUpTo="@+id/splashScreen"
             app:popUpToInclusive="true"
+            app:enterAnim="@anim/slide_in_right"
             android:id="@+id/action_splashScreen_to_homeFragment2"
             app:destination="@id/homeFragment2" />
     </fragment>
@@ -20,5 +21,16 @@
         android:id="@+id/homeFragment2"
         android:name="com.example.simpleecommerceapp.ui.homescreen.fragment.HomeFragment"
         android:label="home_fragment"
-        tools:layout="@layout/home_fragment" />
+        tools:layout="@layout/home_fragment" >
+        <action
+            app:enterAnim="@anim/slide_in_top"
+            app:exitAnim="@anim/slide_out_bottom"
+            android:id="@+id/action_homeFragment2_to_cartFragment"
+            app:destination="@id/cartFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.simpleecommerceapp.ui.cart.fragment.CartFragment"
+        android:label="cart_fragment"
+        tools:layout="@layout/cart_fragment" />
 </navigation>

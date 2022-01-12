@@ -7,12 +7,13 @@ import android.text.Layout
 import android.text.StaticLayout
 import android.text.TextPaint
 import android.view.GestureDetector
+import android.view.GestureDetector.SimpleOnGestureListener
 import android.view.MotionEvent
 import android.view.View
+import android.view.View.OnTouchListener
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
-import android.view.View.OnTouchListener
 
 abstract class SwipeHelperKotlin(dragDirs: Int, swipeDirs: Int) :
     ItemTouchHelper.SimpleCallback(dragDirs, swipeDirs)

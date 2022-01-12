@@ -8,22 +8,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.utils.Utils
 import com.example.simpleecommerceapp.R
-import com.example.simpleecommerceapp.callbacks.AddToCart
 import com.example.simpleecommerceapp.callbacks.Resource
 import com.example.simpleecommerceapp.callbacks.SwipeHelper
 import com.example.simpleecommerceapp.callbacks.SwipeHelperKotlin
-import com.example.simpleecommerceapp.databinding.FragmentSplashScreenBinding
 import com.example.simpleecommerceapp.databinding.HomeFragmentBinding
 import com.example.simpleecommerceapp.models.LocalProducts
 import com.example.simpleecommerceapp.models.Product
 import com.example.simpleecommerceapp.ui.homescreen.HomeScreenAdapter
-import com.example.simpleecommerceapp.utility.SingletonDatas
 import com.example.simpleecommerceapp.utility.Util
 
 class HomeFragment : Fragment() {
@@ -67,9 +64,17 @@ class HomeFragment : Fragment() {
             })
         }
 
+        val cartCount = viewModel.ShowCartProductCount()
+        binding!!.cart.text = "Cart ($cartCount)"
+        binding!!.cart.setOnClickListener {
 
-
-
+            if( cartCount > 0){
+                findNavController().navigate(R.id.action_homeFragment2_to_cartFragment)
+            }
+            else{
+                Util.showShortToast(requireContext(),"NO item in cart")
+            }
+        }
 
         object : SwipeHelper(context,binding!!.homeRecyclerView,false) {
 
@@ -81,7 +86,7 @@ class HomeFragment : Fragment() {
                 /*underlayButtons?.add(UnderlayButton("Detail", AppCompatResources.getDrawable(context!!,R.drawable.ic_baseline_notes_24 ), Color.parseColor("#CDCDCD"), Color.parseColor("#ffffff"),
                     object : UnderlayButtonClickListener {
                         override fun onClick(pos: Int) {
-                            Toast.makeText(context,"Delete clicked at " + pos,Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context,"Delete clicked at " + pos, Toast.LENGTH_SHORT).show()
 
                         }
                     }
@@ -90,7 +95,7 @@ class HomeFragment : Fragment() {
 
 
                 // Share Button
-                /*underlayButtons?.add(UnderlayButton("Share", AppCompatResources.getDrawable(context!!,R.drawable.ic_baseline_share_24 ), Color.parseColor("#0000FF"), Color.parseColor("#ffffff")) {
+               /* underlayButtons?.add(UnderlayButton("Share", AppCompatResources.getDrawable(context!!,R.drawable.ic_baseline_share_24 ), Color.parseColor("#0000FF"), Color.parseColor("#ffffff")) {
 
                 })*/
 
@@ -101,8 +106,8 @@ class HomeFragment : Fragment() {
 
                 underlayButtons?.add(UnderlayButton("Add Cart", AppCompatResources.getDrawable(context!!,R.drawable.ic_baseline_shopping_cart_24 ), Color.parseColor("#FF0000"), Color.parseColor("#ffffff")) { position ->
 
-                    if(!viewModel.checkProduct(adapter!!.getProductID(position).toInt())){
-                        addToCart(adapter!!.getProduct(position))
+                    if(!viewModel.checkProduct(adapter!!.getProductID(position.toString().toInt()).toInt())){
+                        addToCart(adapter!!.getProduct(position.toString().toInt()))
                     }else{
                         Util.showShortToast(context!!, "Product Already Added")
                     }

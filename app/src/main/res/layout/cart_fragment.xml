@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.cart.fragment.CartFragment">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="check out"
+        android:id="@+id/checkOut"/>
+
+    <LinearLayout
+        android:layout_gravity="bottom"
+        android:weightSum="2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/text_color"
+            android:text="Total Amount :"
+            android:textStyle="bold"
+            android:textSize="@dimen/home_item_title"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/text_color"
+            android:text="Total Qty :"
+            android:textSize="@dimen/home_item_title"/>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/cart_screen_item"
+        android:id="@+id/homeRecyclerView"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+
+
+</LinearLayout>

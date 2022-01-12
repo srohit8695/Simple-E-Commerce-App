@@ -22,7 +22,7 @@ import retrofit2.Response
 class HomeViewModel (application: Application): AndroidViewModel(application) {
 
     var dataListFromApi = MutableLiveData<Resource<List<Product>>>()
-    val apiInterface = RetrofitService.getInstance().create<ApiInterface>(ApiInterface::class.java)
+    val apiInterface: ApiInterface = RetrofitService.getInstance().create<ApiInterface>(ApiInterface::class.java)
 
 
     private val repository : ProductRepository = ProductRepository(application)

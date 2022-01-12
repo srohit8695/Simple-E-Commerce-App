@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="splash_icon_width_height">300dp</dimen>
+    <dimen name="refresh_icon_with_height">30dp</dimen>
+    <dimen name="splash_text">15sp</dimen>
+    <dimen name="home_icon_width">100dp</dimen>
+    <dimen name="home_icon_height">120dp</dimen>
+    <dimen name="home_item_title">18sp</dimen>
+    <dimen name="home_item_progress_bar">20dp</dimen>
+    <dimen name="home_item_add_icon">40dp</dimen>
+    <dimen name="home_item_count">20sp</dimen>
+</resources>
