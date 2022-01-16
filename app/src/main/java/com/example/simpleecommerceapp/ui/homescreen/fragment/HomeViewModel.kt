@@ -53,12 +53,11 @@ class HomeViewModel (application: Application): AndroidViewModel(application) {
             val localProductsInCart = showAllProductInCart()
 
             if (localProductsInCart.isNotEmpty()) {
-                for (i in 0 until dataListFromApi.value!!.data!!.size){
+                for (i in dataListFromApi.value!!.data!!.indices){
                     for(j in localProductsInCart.indices){
                         if(dataListFromApi.value!!.data?.get(i)?.product_id.equals(localProductsInCart[j].product_id)){
-
                             dataListFromApi.value!!.data?.get(i)?.qty = localProductsInCart[j].qty
-
+                            break
                         }
                     }
                 }
