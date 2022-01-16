@@ -16,7 +16,7 @@ import retrofit2.Response
 
 class HomeViewModel (application: Application): AndroidViewModel(application) {
 
-    var dataListFromApi = MutableLiveData<Resource<List<Product>>>()
+    var dataListFromApi = MutableLiveData<Resource<MutableList<Product>>>()
     val apiInterface: ApiInterface = RetrofitService.getInstance().create<ApiInterface>(ApiInterface::class.java)
 
 
@@ -35,8 +35,8 @@ class HomeViewModel (application: Application): AndroidViewModel(application) {
             override fun onResponse(call: Call<Products>, response: Response<Products>) {
                 if (response.isSuccessful) {
 
-                    dataListFromApi.value = Resource.Success(response.body()!!.products)
-
+                    dataListFromApi.value = Resource.Success(response.body()!!.products.toMutableList())
+                    updateProducts()
                 }
             }
 
@@ -48,6 +48,26 @@ class HomeViewModel (application: Application): AndroidViewModel(application) {
 
     }
 
+    fun updateProducts(){
+        try {
+            val localProductsInCart = showAllProductInCart()
+
+            if (localProductsInCart.isNotEmpty()) {
+                for (i in 0 until dataListFromApi.value!!.data!!.size){
+                    for(j in localProductsInCart.indices){
+                        if(dataListFromApi.value!!.data?.get(i)?.product_id.equals(localProductsInCart[j].product_id)){
+
+                            dataListFromApi.value!!.data?.get(i)?.qty = localProductsInCart[j].qty
+
+                        }
+                    }
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
     fun insertProduct(productEntity: LocalProducts) : Long{
        return repository.insertData(productEntity)
     }
@@ -56,8 +76,8 @@ class HomeViewModel (application: Application): AndroidViewModel(application) {
         return repository.checkProductExist(productID)
     }
 
-    fun showAllProductInCart() : String{
-        return repository.getAllData().toString()
+    fun showAllProductInCart() : List<LocalProducts>{
+        return repository.getAllData()
     }
 
     fun showCartProductCount() : Long{
