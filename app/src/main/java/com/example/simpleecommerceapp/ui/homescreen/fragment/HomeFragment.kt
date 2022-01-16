@@ -119,15 +119,9 @@ class HomeFragment : Fragment() {
     fun addToCart(product: Product){
 
         val localProduct = LocalProducts(product.description, product.id, product.image, product.name, product.price, product.product_id, product.special, product.qty, product.subTotal)
-        val insertProductCount = viewModel.insertProduct(localProduct)
-        val cartProductCount = viewModel.showCartProductCount()
-
-        if(insertProductCount == cartProductCount){
-            Util.showShortToast(requireContext(),"Added to Cart Successful")
-            updateCart()
-        }else{
-            Util.showShortToast(requireContext(),"Added to Cart is Unsuccessful")
-        }
+        viewModel.insertProduct(localProduct)
+        Util.showShortToast(requireContext(),"Added to Cart Successful")
+        updateCart()
 
     }
 

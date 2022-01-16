@@ -34,8 +34,13 @@ class HomeScreenAdapter(private var dataList : List<Product>, private val contex
                 with(dataList[position]){
                     var qty = 0
 
-                    dataList[position].qty = qty.toString()
-                    dataList[position].subTotal = "0"
+                    if (dataList[position].qty.toString().trim().equals("0")) {
+                        dataList[position].qty = qty.toString()
+                        dataList[position].subTotal = "0"
+                    } else {
+                        qty = dataList[position].qty?.toInt() ?: 0
+                    }
+
                     Glide.with(context).load(dataList[position].image).into(binding.image)
                     binding.name.text = dataList[position].name
                     binding.originalPrice.text = dataList[position].price
