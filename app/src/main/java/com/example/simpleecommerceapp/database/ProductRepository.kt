@@ -1,9 +1,6 @@
 package com.example.simpleecommerceapp.database
 
 import android.content.Context
-import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import com.example.simpleecommerceapp.models.LocalProducts
 
 
 class ProductRepository(context: Context) {
@@ -14,8 +11,8 @@ class ProductRepository(context: Context) {
         return dbms.insertData(productEntity)
     }
 
-    fun deleteData(productEntity: LocalProducts){
-        dbms.deleteData(productEntity)
+    fun deleteData(productEntity: LocalProducts) : Int{
+        return dbms.deleteData(productEntity)
     }
 
     fun getAllData() : List<LocalProducts> {

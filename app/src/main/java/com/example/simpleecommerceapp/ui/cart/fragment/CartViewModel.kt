@@ -2,9 +2,8 @@ package com.example.simpleecommerceapp.ui.cart.fragment
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
 import com.example.simpleecommerceapp.database.ProductRepository
-import com.example.simpleecommerceapp.models.LocalProducts
+import com.example.simpleecommerceapp.database.LocalProducts
 import com.example.simpleecommerceapp.utility.Util
 
 class CartViewModel(application: Application): AndroidViewModel(application) {
@@ -35,6 +34,14 @@ class CartViewModel(application: Application): AndroidViewModel(application) {
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    fun deleteItemInCart(productEntity: LocalProducts) : Int{
+        if(dbRepository.deleteData(productEntity) == 1){
+            showAllProductInCart()
+            return 1
+        }
+       return 0
     }
 
 

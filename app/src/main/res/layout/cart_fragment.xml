@@ -23,14 +23,12 @@
         android:layout_weight="0.75"
         android:padding="5dp"
         android:layout_gravity="bottom"
-        android:weightSum="2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:layout_weight="1"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="?attr/text_color"
             android:text="Total Amount :"
@@ -40,8 +38,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:gravity="center"
             android:id="@+id/totalAmt"
-            android:layout_weight="1"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="?attr/text_color"
             android:textSize="@dimen/home_item_title"/>

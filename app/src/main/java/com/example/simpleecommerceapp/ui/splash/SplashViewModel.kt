@@ -15,7 +15,7 @@ class SplashViewModel constructor()  : ViewModel()  {
 
     val dataList = MutableLiveData<List<Products>>()
     val errorMessage = MutableLiveData<String>()
-    val apiInterface = RetrofitService.getInstance()?.create<ApiInterface>(ApiInterface::class.java)
+    val apiInterface = RetrofitService.getInstance().create<ApiInterface>(ApiInterface::class.java)
 
     fun getAllProductList() {
 

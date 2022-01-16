@@ -1,11 +1,9 @@
 package com.example.simpleecommerceapp.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.simpleecommerceapp.models.LocalProducts
 
 @Dao
 interface ProductLocalDAO {
@@ -14,7 +12,7 @@ interface ProductLocalDAO {
     fun insertData(productEntity: LocalProducts) : Long
 
     @Delete
-    fun deleteData(productEntity: LocalProducts)
+    fun deleteData(productEntity: LocalProducts) : Int
 
     @Query("Select * from productTable")
     fun showAllProducts(): List<LocalProducts>

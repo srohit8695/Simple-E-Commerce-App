@@ -26,16 +26,33 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <LinearLayout
+                android:weightSum="20"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="?attr/text_color"
-                android:text="@string/app_name"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:id="@+id/name"
-                android:textStyle="bold"
-                android:textSize="@dimen/home_item_title"/>
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_weight="19"
+                    android:layout_height="wrap_content"
+                    android:textColor="?attr/text_color"
+                    android:text="@string/app_name"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:id="@+id/name"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/home_item_title"/>
+
+                <androidx.constraintlayout.utils.widget.ImageFilterButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/delete"
+                    android:src="@drawable/ic_baseline_delete_24"/>
+
+            </LinearLayout>
+
+
 
 
 
@@ -45,17 +62,17 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <androidx.appcompat.widget.AppCompatTextView
+               <!-- <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="?attr/text_color"
                     android:text="Price/Qty :"
                     android:textStyle="bold"
-                    android:textSize="@dimen/home_item_title"/>
+                    android:textSize="@dimen/home_item_title"/>-->
 
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:paddingLeft="10dp"
+                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="?attr/text_color"
@@ -70,16 +87,16 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <!--<androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="?attr/text_color"
                     android:text="Total Qty :"
                     android:textStyle="bold"
-                    android:textSize="@dimen/home_item_title"/>
+                    android:textSize="@dimen/home_item_title"/>-->
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:paddingLeft="10dp"
+                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textColor="?attr/text_color"
@@ -94,16 +111,16 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <androidx.appcompat.widget.AppCompatTextView
+               <!-- <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="?attr/text_color"
                     android:text="Sub Total :"
                     android:textStyle="bold"
-                    android:textSize="@dimen/home_item_title"/>
+                    android:textSize="@dimen/home_item_title"/>-->
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:paddingLeft="10dp"
+                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textColor="?attr/text_color"

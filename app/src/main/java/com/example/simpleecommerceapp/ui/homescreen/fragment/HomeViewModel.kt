@@ -1,20 +1,15 @@
 package com.example.simpleecommerceapp.ui.homescreen.fragment
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.example.simpleecommerceapp.callbacks.Resource
 import com.example.simpleecommerceapp.database.ProductRepository
-import com.example.simpleecommerceapp.models.LocalProducts
+import com.example.simpleecommerceapp.database.LocalProducts
 import com.example.simpleecommerceapp.models.Product
 import com.example.simpleecommerceapp.models.Products
 import com.example.simpleecommerceapp.networks.ApiInterface
 import com.example.simpleecommerceapp.networks.RetrofitService
-import com.example.simpleecommerceapp.utility.SingletonDatas
-import com.example.simpleecommerceapp.utility.Util
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -65,7 +60,7 @@ class HomeViewModel (application: Application): AndroidViewModel(application) {
         return repository.getAllData().toString()
     }
 
-    fun ShowCartProductCount() : Long{
+    fun showCartProductCount() : Long{
         return repository.totalProductsInCart()
     }
 

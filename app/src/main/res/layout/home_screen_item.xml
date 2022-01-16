@@ -19,7 +19,7 @@
             android:layout_height="@dimen/home_icon_height"/>
 
         <LinearLayout
-            android:paddingVertical="5dp"
+            android:paddingVertical="20dp"
             android:paddingHorizontal="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -37,62 +37,36 @@
                 android:textSize="@dimen/home_item_title"/>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <androidx.appcompat.widget.AppCompatRatingBar
-                    android:id="@+id/ratingBar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/home_item_progress_bar"
-                    android:stepSize="0.1"
-                    style="?android:attr/ratingBarStyleSmall"
-                    android:theme="@style/Widget.AppCompat.Light.ActionBar.Solid"
-                    android:numStars="5"/>
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:gravity="left"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="?attr/text_color"
-                    android:id="@+id/ratingBarTextView"
-                    android:textSize="12sp"/>
-
-            </LinearLayout>
-
-
-
-            <LinearLayout
-                android:gravity="left"
+                android:layout_gravity="center"
+                android:gravity="start"
                 android:layout_weight="3"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatTextView
 
                     android:gravity="center"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:textColor="?attr/text_color"
                     android:id="@+id/originalPrice"
                     android:textSize="12sp"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
 
-                    android:gravity="left"
+                    android:gravity="center"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:textColor="?attr/text_color"
                     android:id="@+id/specialPrice"
                     android:textStyle="bold"
                     android:textSize="18sp"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
-
-                    android:gravity="left"
+                    android:gravity="center"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:textColor="?attr/text_color"
                     android:id="@+id/saved"
                     android:textSize="12sp"/>
@@ -104,11 +78,15 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
+
                 <ImageButton
-                    android:src="@drawable/ic_baseline_add_24"
-                    android:layout_width="@dimen/home_item_add_icon"
-                    android:layout_height="@dimen/home_item_add_icon"
-                    android:id="@+id/add"/>
+                    android:src="@drawable/ic_baseline_remove_24"
+                    android:background="@drawable/ovel_button"
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/remove"/>
+
+
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:gravity="center"
@@ -120,10 +98,11 @@
                     android:textSize="@dimen/home_item_count"/>
 
                 <ImageButton
-                    android:src="@drawable/ic_baseline_remove_24"
-                    android:layout_width="@dimen/home_item_add_icon"
-                    android:layout_height="@dimen/home_item_add_icon"
-                    android:id="@+id/remove"/>
+                    android:id="@+id/add"
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/ovel_button"
+                    android:src="@drawable/ic_baseline_add_24" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:gravity="center"
