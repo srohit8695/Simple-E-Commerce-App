@@ -3,9 +3,7 @@ package com.example.simpleecommerceapp.ui.homescreen.fragment
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.fragment.app.Fragment
@@ -135,8 +133,12 @@ class HomeFragment : Fragment() {
     }
 
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+
+        inflater.inflate(R.menu.actionbar_homescreen, menu)
 
 
 
-
+        super.onCreateOptionsMenu(menu, inflater)
+    }
 }
