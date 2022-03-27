@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import android.view.*
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.fragment.app.Fragment
@@ -19,6 +21,7 @@ import com.example.simpleecommerceapp.models.Product
 import com.example.simpleecommerceapp.ui.homescreen.HomeScreenAdapter
 import com.example.simpleecommerceapp.utility.Util
 import com.example.simpleecommerceapp.R
+import kotlinx.android.synthetic.main.homefragment_cart_badge.view.*
 
 
 class HomeFragment : Fragment() {
@@ -37,6 +40,7 @@ class HomeFragment : Fragment() {
         binding = HomeFragmentBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
+        setHasOptionsMenu(true)
         try {
             adapter = HomeScreenAdapter(emptyList(),inflater.context)
             binding!!.homeRecyclerView.adapter = adapter
@@ -137,8 +141,23 @@ class HomeFragment : Fragment() {
 
         inflater.inflate(R.menu.actionbar_homescreen, menu)
 
+        val badge = menu.findItem(R.id.actionAddToCart)
 
+        badge.actionView.cart_badge.setText("25")
 
         super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        return when(item.itemId){
+            R.id.actionAddToCart -> {
+                Toast.makeText(context,"clicked cart",Toast.LENGTH_SHORT).show()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+
+
     }
 }

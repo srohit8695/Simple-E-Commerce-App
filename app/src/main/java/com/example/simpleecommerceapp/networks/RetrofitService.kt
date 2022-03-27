@@ -17,7 +17,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 class RetrofitService{
 
     companion object{
-        val BASE_URL: String = "https://www.mocky.io/"
+        val BASE_URL: String = ""
 
         fun getInstance() : Retrofit{
             return Retrofit.Builder()

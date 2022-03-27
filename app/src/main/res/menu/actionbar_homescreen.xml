@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/actionAddToCart"
         app:actionLayout="@layout/homefragment_cart_badge"
         app:showAsAction="always"
         tools:ignore="MenuTitle" />
